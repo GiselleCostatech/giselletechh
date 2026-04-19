@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giselle Costa · giselletechh</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pink-50: #fff0f6;
+    --pink-100: #ffd6e7;
+    --pink-200: #ffadd2;
+    --pink-400: #f06595;
+    --pink-600: #c2255c;
+    --pink-800: #a61e4d;
+    --rose: #ff6b9d;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--pink-50);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Subtle background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, #ffd6e740 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, #ffadd230 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, #fff0f6 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    padding: 3rem 1.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Avatar */
+  .avatar-wrap {
+    position: relative;
+    margin-bottom: 1.25rem;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .avatar-ring {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, #ffadd2, #f06595, #c2255c, #a855f7);
+    animation: spin 6s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .avatar-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--pink-50);
+    border: 3px solid var(--pink-50);
+    animation: spin 6s linear infinite reverse;
+  }
+
+  .avatar-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 8%;
+  }
+
+  /* Badge */
+  .live-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    background: linear-gradient(135deg, #f06595, #c2255c);
+    color: white;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 3px 7px;
+    border-radius: 20px;
+    border: 2px solid var(--pink-50);
+    text-transform: uppercase;
+  }
+
+  /* Name block */
+  .name-block {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .name {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--pink-800);
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .handle {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--pink-400);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .tagline {
+    font-size: 13.5px;
+    color: #c2255c;
+    line-height: 1.6;
+  }
+
+  .dot { color: var(--pink-200); margin: 0 5px; }
+
+  /* Section label */
+  .label {
+    width: 100%;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pink-400);
+    margin: 0 0 10px 4px;
+  }
+
+  /* Buttons */
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 16px;
+    border: 1.5px solid var(--pink-100);
+    background: var(--white);
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-decoration: none;
+    transition: transform 0.15s ease, border-color 0.15s, box-shadow 0.15s;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--pink-200);
+    box-shadow: 0 8px 24px #f0659520;
+  }
+
+  .btn:active { transform: scale(0.98); }
+
+  .btn-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .ic-pink   { background: #fce7f3; }
+  .ic-lilac  { background: #f3e8ff; }
+  .ic-sky    { background: #e0f2fe; }
+  .ic-orange { background: #fff7ed; }
+  .ic-mint   { background: #ecfdf5; }
+
+  .btn-text { display: flex; flex-direction: column; flex: 1; }
+  .btn-title { font-size: 14px; font-weight: 600; color: var(--pink-800); line-height: 1.2; }
+  .btn-sub   { font-size: 12px; color: var(--pink-400); margin-top: 2px; }
+
+  .btn-arrow {
+    font-size: 18px;
+    color: var(--pink-200);
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+
+  /* Divider */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--pink-100), transparent);
+    margin: 14px 0 18px;
+  }
+
+  /* Staggered animation delays */
+  .btn:nth-child(1) { animation-delay: 0.15s; }
+  .btn:nth-child(2) { animation-delay: 0.22s; }
+  .btn:nth-child(3) { animation-delay: 0.29s; }
+  .btn:nth-child(4) { animation-delay: 0.36s; }
+  .btn:nth-child(5) { animation-delay: 0.43s; }
+
+  /* Footer */
+  .footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--pink-200);
+    line-height: 1.8;
+  }
+
+  .heart { color: #f06595; }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .container { padding: 2.5rem 1.25rem 3.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="avatar-wrap">
+    <div class="avatar-ring">
+      <div class="avatar-inner">
+        <img src="foto.jpg" alt="Giselle Costa" />
+      </div>
+    </div>
+    <span class="live-badge">✦ RJ</span>
+  </div>
+
+  <div class="name-block">
+    <p class="handle">@giselletechh</p>
+    <h1 class="name">Giselle Costa</h1>
+    <p class="tagline">
+      Data Engineer
+      <span class="dot">·</span>
+      Lifestyle
+      <span class="dot">·</span>
+      Gym 🎀
+    </p>
+  </div>
+
+  <!-- Aprenda -->
+  <p class="label">🎓 aprenda programação</p>
+
+  <a class="btn" href="https://www.rocketseat.com.br/oferta/influencer/v2/giselletechh" target="_blank">
+    <div class="btn-icon ic-pink">🚀</div>
+    <div class="btn-text">
+      <span class="btn-title">Curso de Programação</span>
+      <span class="btn-sub">Rocketseat · desconto exclusivo</span>
+    </div>
+    <span class="btn-arrow">›</span>
+  </a>
+
+  <div class="divider"></div>
+
+  <!-- Shopee -->
+  <p class="label">🛍️ o que eu uso</p>
+
+  <a class="btn" href="https://shopee.com.br" target="_blank">
+    <div class="btn-icon ic-orange">🛒</div>
+    <div class="btn-text">
+      <span class="btn-title">Minhas indicações Shopee</span>
+      <span class="btn-sub">Produtos que eu compro e uso</span>
+    </div>
+    <span class="btn-arrow">›</span>
+  </a>
+
+  <div class="divider"></div>
+
+  <!-- Me encontre -->
+  <p class="label">📌 me encontre</p>
+
+  <a class="btn" href="https://www.instagram.com/giselletechh" target="_blank">
+    <div class="btn-icon ic-pink">📷</div>
+    <div class="btn-text">
+      <span class="btn-title">Instagram</span>
+      <span class="btn-sub">@giselletechh</span>
+    </div>
+    <span class="btn-arrow">›</span>
+  </a>
+
+  <a class="btn" href="https://www.linkedin.com/in/giselle-costa-0aab1b358" target="_blank">
+    <div class="btn-icon ic-sky">💼</div>
+    <div class="btn-text">
+      <span class="btn-title">LinkedIn</span>
+      <span class="btn-sub">Conecta comigo</span>
+    </div>
+    <span class="btn-arrow">›</span>
+  </a>
+
+  <a class="btn" href="mailto:giselleduch@gmail.com">
+    <div class="btn-icon ic-mint">✉️</div>
+    <div class="btn-text">
+      <span class="btn-title">Contato & Parcerias</span>
+      <span class="btn-sub">giselleduch@gmail.com</span>
+    </div>
+    <span class="btn-arrow">›</span>
+  </a>
+
+  <div class="footer">
+    feito com <span class="heart">♥</span> · giselletechh
+  </div>
+
+</div>
+</body>
+</html>
